@@ -1,0 +1,28 @@
+# Ignore specific Unity-generated files and folders that aren't essential for WebGL deployment
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Temporary and log files
+*.log
+Logs/
+UserSettings/
+
+# Ignore these Unity-specific folders if they exist in your project
+# But KEEP the Build and TemplateData folders for WebGL
+Temp/
+Library/
+obj/
+
+# IDE-specific files
+.vscode/
+.idea/
+*.suo
+*.user
+*.sln
+*.csproj
+
+# Exclude any personal or sensitive configuration files
+*.private
