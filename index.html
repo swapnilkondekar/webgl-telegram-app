@@ -6,17 +6,34 @@
     <title>Unity WebGL Player | WebGL Game Bot</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+<script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (window.Telegram && window.Telegram.WebApp) {
+          const webapp = window.Telegram.WebApp;
+          
+          // Telegram Web App Configuration
+          webapp.ready(); // Signal app is ready
+          webapp.expand(); // Expand to full screen
+          
+          // Optional: Handle Telegram-specific events
+          webapp.onEvent('themeChanged', () => {
+            // Adjust your app's theme based on Telegram's theme
+            const theme = webapp.colorScheme;
+            document.body.classList.toggle('dark-theme', theme === 'dark');
+          });
+          
+          // Optional: Close button handling
+          webapp.onEvent('mainButtonClicked', () => {
+            webapp.sendData('Game started');
+          });
+        }
+      });
+    </script>
   </head>
   <body>
-    <div class="top">
-        <h1>Top Area</h1>
-    </div>
-    <div class="body">
-
-    
     <div id="unity-container" class="unity-desktop">
-      
-      <canvas id="unity-canvas" width="100%" height="100%"></canvas>
+      <canvas id="unity-canvas" width=960 height=600></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -24,14 +41,12 @@
         </div>
       </div>
       <div id="unity-warning"> </div>
-      
+      <div id="unity-footer">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">WebGL Game Bot</div>
+      </div>
     </div>
-  </div>
-  <div class="footer">
-    <h1>
-      Footer
-    </h1>
-  </div>
     <script>
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
@@ -65,11 +80,11 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/Demo01.loader.js";
+      var loaderUrl = buildUrl + "/Demo02.loader.js";
       var config = {
-        dataUrl: buildUrl + "/Demo01.data",
-        frameworkUrl: buildUrl + "/Demo01.framework.js",
-        codeUrl: buildUrl + "/Demo01.wasm",
+        dataUrl: buildUrl + "/Demo02.data",
+        frameworkUrl: buildUrl + "/Demo02.framework.js",
+        codeUrl: buildUrl + "/Demo02.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "WebGL Game Bot",
@@ -123,30 +138,6 @@
         });
       };
       document.body.appendChild(script);
-    </script>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        if (window.Telegram && window.Telegram.WebApp) {
-          const webapp = window.Telegram.WebApp;
-          
-          // Telegram Web App Configuration
-          webapp.ready(); // Signal app is ready
-          webapp.expand(); // Expand to full screen
-          
-          // Optional: Handle Telegram-specific events
-          webapp.onEvent('themeChanged', () => {
-            // Adjust your app's theme based on Telegram's theme
-            const theme = webapp.colorScheme;
-            document.body.classList.toggle('dark-theme', theme === 'dark');
-          });
-          
-          // Optional: Close button handling
-          webapp.onEvent('mainButtonClicked', () => {
-            webapp.sendData('Game started');
-          });
-        }
-      });
     </script>
   </body>
 </html>
