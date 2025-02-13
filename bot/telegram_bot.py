@@ -2,8 +2,9 @@ import os
 import telebot
 from telebot import types
 
-# Replace with your actual bot token
-BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', 'your_bot_token_here')
+# Placeholder for bot token - you'll replace this when running locally
+BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
+
 bot = telebot.TeleBot(BOT_TOKEN)
 
 @bot.message_handler(commands=['start'])
@@ -12,7 +13,7 @@ def send_welcome(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     web_app_button = types.KeyboardButton(
         "Play Game", 
-        web_app=types.WebAppInfo(url="https://yourusername.github.io/your-repo-name/")
+        web_app=types.WebAppInfo(url="https://swapnilkondekar.github.io/webgl-telegram-app/")
     )
     markup.add(web_app_button)
     
