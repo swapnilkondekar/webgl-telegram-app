@@ -4,7 +4,6 @@ from telebot import types
 
 # Placeholder for bot token - you'll replace this when running locally
 BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
-
 bot = telebot.TeleBot(BOT_TOKEN)
 
 @bot.message_handler(commands=['start'])
