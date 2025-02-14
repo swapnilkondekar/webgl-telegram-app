@@ -6,8 +6,36 @@
     <title>Unity WebGL Player | WebGL Game Bot</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+<script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (window.Telegram && window.Telegram.WebApp) {
+          const webapp = window.Telegram.WebApp;
+          
+          // Telegram Web App Configuration
+          webapp.ready(); // Signal app is ready
+          webapp.expand(); // Expand to full screen
+          
+          // Optional: Handle Telegram-specific events
+          webapp.onEvent('themeChanged', () => {
+            // Adjust your app's theme based on Telegram's theme
+            const theme = webapp.colorScheme;
+            document.body.classList.toggle('dark-theme', theme === 'dark');
+          });
+          
+          // Optional: Close button handling
+          webapp.onEvent('mainButtonClicked', () => {
+            webapp.sendData('Game started');
+          });
+        }
+      });
+    </script>
   </head>
   <body>
+    <header>
+      <h1>Welcome to WebGL Game</h1>
+    </header>
+    <main>
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=960 height=600></canvas>
       <div id="unity-loading-bar">
@@ -17,12 +45,19 @@
         </div>
       </div>
       <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-webgl-logo"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">WebGL Game Bot</div>
-      </div>
+      
     </div>
+    </main>
+    <footer>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#profile">Profile</a></li>
+        </ul>
+      </nav>
+      <p>&copy; 2025 WebGL Game Bot. All rights reserved.</p>
+    </footer>
+    
     <script>
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
